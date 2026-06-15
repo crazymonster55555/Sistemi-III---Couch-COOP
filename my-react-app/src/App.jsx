@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'  // Add useEffect here
 import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import heroImg from './assets/hero.png'
@@ -6,6 +6,18 @@ import './App.css'
 
 function App() {
   const [count, setCount] = useState(0)
+  const [data, setData] = useState(null)  // Add this state for API data
+
+  useEffect(() => {
+    // Call your backend API at root path '/'
+    fetch('/')
+      .then(response => response.json())
+      .then(data => {
+        console.log('API Response:', data);
+        setData(data);
+      })
+      .catch(error => console.error('Error:', error));
+  }, []);
 
   return (
     <>
@@ -20,6 +32,13 @@ function App() {
           <p>
             Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
           </p>
+          {/* Display API data if available */}
+          {data && (
+            <div style={{ marginTop: '20px', padding: '10px', background: '#f0f0f0', borderRadius: '8px' }}>
+              <p><strong>Database Status:</strong> {data.ok ? 'Connected!' : 'Failed'}</p>
+              {data.database && <p><strong>Server Time:</strong> {data.database.now_time}</p>}
+            </div>
+          )}
         </div>
         <button
           type="button"
@@ -119,4 +138,4 @@ function App() {
   )
 }
 
-export default App
+export default App;
