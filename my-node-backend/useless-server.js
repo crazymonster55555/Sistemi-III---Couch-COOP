@@ -15,7 +15,7 @@ app.get('/', async (req, res) => {
         const conn = await mysql.createConnection(process.env.DATABASE_URL);
         const [rows] = await conn.query('SELECT NOW() AS now_time');
         await conn.end();
-        res.json({ ok: true, database: rows[0] });
+        res.json({ ok: false, database: rows[0] });
     } catch (err) {
         res.status(500).json({ ok: false, error: err.message });
     }
