@@ -182,3 +182,22 @@
     border-right-color: var(--border);
   }
 }
+
+.login{
+  position: relative;
+  margin: auto;
+  border-color: black;
+  background-color: purple;
+  border-radius: 10px;
+  padding-top: 5%;
+  padding-bottom: 5%;
+  padding-right: 10%;
+  padding-left: 10%;
+  border-style: solid;
+}
+
+.dashboard{
+  position: relative;
+  margin: auto;
+  border-color: aqua;
+}

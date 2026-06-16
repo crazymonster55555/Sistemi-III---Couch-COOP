@@ -3,24 +3,19 @@ import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import heroImg from './assets/hero.png'
 import './App.css'
+import Login from '../components/login'
+import Dashboard from '../components/dashboard'
 
 function App() {
-  const [count, setCount] = useState(0)
-  const [data, setData] = useState(null)  // Add this state for API data
-
-  useEffect(() => {
-    // Call your backend API at root path '/'
-    fetch('/')
-      .then(response => response.json())
-      .then(data => {
-        console.log('API Response:', data);
-        setData(data);
-      })
-      .catch(error => console.error('Error:', error));
-  }, []);
 
   return (
     <>
+      <Login/>
+      
+
+    </>
+  )
+  /*<>
       <section id="center">
         <div className="hero">
           <img src={heroImg} className="base" width="170" height="179" alt="" />
@@ -32,7 +27,6 @@ function App() {
           <p>
             Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
           </p>
-          {/* Display API data if available */}
           {data && (
             <div style={{ marginTop: '20px', padding: '10px', background: '#f0f0f0', borderRadius: '8px' }}>
               <p><strong>Database Status:</strong> {data.ok ? 'Connected!' : 'Failed'}</p>
@@ -134,8 +128,7 @@ function App() {
 
       <div className="ticks"></div>
       <section id="spacer"></section>
-    </>
-  )
+    </>*/
 }
 
 export default App;
