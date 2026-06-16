@@ -10,6 +10,51 @@ app.use(express.json());
 
 app.use(express.static('/workspace/my-react-app/dist'));
 
+app.post("/api/register", async (req,res) => {
+    const { username, email, password, timezone, language } = req.body;
+
+    /*if (!username || !email || !password){
+        return res.status(400).json({success: false, message: "Username or email or password are required"})
+    }*/
+
+    try{
+        const conn = await mysql.createConnection(process.env.DATABASE_URL);
+        const [current] = await conn.query(
+            "SELECT * FROM user WHERE username = ? OR email = ?",
+            [username, email]
+        )
+
+        if (current.length > 0){
+            await conn.end();
+            return res.status(409).json({
+                success: false, 
+                message: "Username or email exists"
+            })
+        }
+
+        const [result] = await conn.query (
+            `INSERT INTO user
+            (username,email,password,timezone,language)
+            VALUES (?,?,?,?,?)`,
+            [username,email,password,timezone,language]
+        )
+
+        await conn.end();
+
+        res.status(201).json({
+            success: true,
+            message: "Registration complete",
+            userId: result.insertId
+        });
+    }catch(err){
+        console.error("Registration error", err);
+        res.status(500).json({
+            success: false,
+            message: "Server error while registering"
+        });
+    }
+});
+
 app.post('/api/login', async (req, res) => {
     const { username, password } = req.body;
 

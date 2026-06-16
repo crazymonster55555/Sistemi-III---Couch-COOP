@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Register from "./register";
 
 export default function Login(props) {
     
@@ -40,7 +41,6 @@ export default function Login(props) {
         <form className="login" onSubmit={redirect}>
             <h1><b>Login</b></h1>
             <br/>
-            {error && <p style={{ color: 'red', fontWeight: 'bold' }}>{error}</p>}
             <span>
                 <label>Username: </label><br/>
                 <input type="text" placeholder="Enter username here ..."
@@ -54,8 +54,11 @@ export default function Login(props) {
             </span>
             <br/><br/>
             <span>
-                <button type="submit">Log in</button>
+                <button type="submit">Log In</button>
             </span>
+            <br/>   
+            <Link to="/register">Sign Up</Link>
+            {error && <p style={{ color: 'red', fontWeight: 'bold' }}>{error}</p>}
         </form>
     );
 }
