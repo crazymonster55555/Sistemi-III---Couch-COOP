@@ -1,14 +1,15 @@
 const express = require('express');
 const mysql = require('mysql2/promise');
 const path = require('path');
+const cors = require('cors');
 require('dotenv').config();
 
 const app = express();
 const port = 3000;
 
-app.use(express.json());
+app.use(cors());
 
-app.use(express.static('/workspace/my-react-app/dist'));
+app.use(express.json());
 
 app.post("/api/register", async (req,res) => {
     const { username, email, password, timezone, language } = req.body;
@@ -92,12 +93,7 @@ app.get('/api', async (req, res) => {
     }
 });
 
-app.use((req, res) => {
-    res.sendFile('/workspace/my-react-app/dist/index.html');
-});
-
 app.listen(port, '0.0.0.0', () => {
-    console.log(`Server running on port ${port}`);
-    console.log(`React app: http://localhost:${port}/`);
-    console.log(`API: http://localhost:${port}/api`);
+    console.log(`Server: http://localhost:${port}/api`);
+    console.log(`Server: http://localhost:${port+1}`);
 });
