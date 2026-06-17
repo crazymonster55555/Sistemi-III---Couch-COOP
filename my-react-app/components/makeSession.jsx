@@ -40,9 +40,11 @@ export default function MakeSession(props) {
             });
 
             const data = await response.json();
+            const gameName = localStorage.setItem("gameName", data.gameName);
+            console.log("fff: ", gameName);
                 
             if (response.ok && data.success) {
-                setSuccess("Registration complete. Redirecting...");
+                setSuccess("Session made. Redirecting...");
                 setGame('');
                 setDuration(60);
                 setDescription('');
@@ -59,7 +61,7 @@ export default function MakeSession(props) {
                     }
                 }, 2000);
             } else {
-                setError(data.message || 'Registracija ni uspela');
+                setError(data.message || 'Session failed');
             }
         } catch (error) {
             console.error('Napaka pri povezavi:', error);

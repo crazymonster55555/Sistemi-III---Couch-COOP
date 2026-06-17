@@ -4,6 +4,7 @@ import Dashboard from "../components/dashboard";
 import Register from "../components/register";
 import ResetPassword from "../components/resetPassword";
 import MakeSession from "../components/makeSession";
+import Empty from "../components/empty";
 
 export default function AppRouter(){
     return (
@@ -15,6 +16,7 @@ export default function AppRouter(){
                 <Route path="/register" element={<Register />} />
                 <Route path="/resetPassword" element={<ResetPassword />} />
                 <Route path="/dashboard/makeSession" element={<MakeSession />} />
+                <Route path="/dashboard/sessions" element={<Empty/>}/>
             </Routes>
         </BrowserRouter>
     )

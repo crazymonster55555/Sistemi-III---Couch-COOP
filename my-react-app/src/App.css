@@ -209,7 +209,25 @@
   position: absolute;
   margin: auto;
   top: 15%;
-  right: 5%;
+  right: 15%;
   font-size: xx-large;
   border-radius: 100%;
+}
+
+.makeSession1{
+  position: absolute;
+  margin: auto;
+  top: 25%;
+  right: 15%;
+  font-size: xx-large;
+  border-radius: 100%;
+}
+
+.sessionLetter{
+  position: absolute;
+  background-color: purple;
+  left: 15%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 2%;
 }

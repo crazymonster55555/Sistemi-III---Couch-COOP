@@ -82,6 +82,8 @@ app.post("/api/dashboard/makeSession", async (req,res) => {
         }
         
         gameId = current[0].id;
+        gameName = current[0].name;
+        console.log(gameName);
         //console.log(durationInt);
         //console.log(userId);
 
@@ -97,7 +99,8 @@ app.post("/api/dashboard/makeSession", async (req,res) => {
         res.status(201).json({
             success: true,
             message: "Session created",
-            userId: result.insertId
+            userId: result.insertId,
+            gameName: gameName
         });
     }catch(err){
         console.error("Session failed", err);
@@ -105,6 +108,25 @@ app.post("/api/dashboard/makeSession", async (req,res) => {
             success: false,
             message: "Server error while registering"
         });
+    }
+});
+
+app.get("/api/dashboard/sessions", async (req, res) =>{
+    try{
+        
+        const conn = await mysql.createConnection(process.env.DATABASE_URL);
+        
+        const [sessions] = await conn.query(
+            "SELECT * FROM session"
+        );
+        
+        await conn.end();
+
+        res.json({success: true, sessions: sessions});
+
+    }catch(err){
+        console.error("Error: ", err);
+        res.status(500).json({success: false, error: "Server error"});
     }
 });
 
