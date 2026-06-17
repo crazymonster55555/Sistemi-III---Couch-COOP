@@ -17,6 +17,7 @@ export default function Dashboard(props){
         const timer = setTimeout(() => {
             if (single){
                 localStorage.removeItem('username');
+                localStorage.removeItem('userID');
                 alert("Seja potekla");
                 navigate("/");
                 single = false

@@ -25,9 +25,13 @@ export default function Login(props) {
             });
 
             const data = await response.json();
+            let z;
 
             if (response.ok && data.success) {
+                //console.log("x: ", data.userID);
                 localStorage.setItem('username', username);
+                localStorage.setItem('userID', data.userID);
+                //console.log("z: ", localStorage.getItem('userID'));
                 navigate('/dashboard');
             } else {
                 setError(data.message || 'Prijava ni uspela');

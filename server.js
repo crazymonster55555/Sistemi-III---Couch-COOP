@@ -56,6 +56,59 @@ app.post("/api/register", async (req,res) => {
     }
 });
 
+app.post("/api/dashboard/makeSession", async (req,res) => {
+    /*if (!username || !email || !password){
+        return res.status(400).json({success: false, message: "Username or email or password are required"})
+    }*/
+    const {game, duration, description, connection, status, userID} = req.body;
+    //console.log("d: ", userID);
+    let userId = Number(userID);
+    let durationInt = Number(duration);
+
+    try{
+        let gameId;
+        const conn = await mysql.createConnection(process.env.DATABASE_URL);
+        const [current] = await conn.query(
+            "SELECT id FROM game WHERE name = ?",
+            [game]
+        )
+
+        if (current.length == 0){
+            await conn.end();
+            return res.status(409).json({
+                success: false, 
+                message: "Game not available"
+            })
+        }
+        
+        gameId = current[0].id;
+        //console.log(durationInt);
+        //console.log(userId);
+
+        const [result] = await conn.query (
+            `INSERT INTO session
+            (user_id,game_id,duration, description, connection_type, status)
+            VALUES (?,?,?,?,?,?)`,
+            [userId,gameId,durationInt, description, connection, status]
+        )
+
+        await conn.end();
+
+        res.status(201).json({
+            success: true,
+            message: "Session created",
+            userId: result.insertId
+        });
+    }catch(err){
+        console.error("Session failed", err);
+        res.status(500).json({
+            success: false,
+            message: "Server error while registering"
+        });
+    }
+});
+
+
 app.post('/api/resetPassword', async (req, res) => {
     const { newPassword, username } = req.body;
 
@@ -96,14 +149,18 @@ app.post('/api/login', async (req, res) => {
         const conn = await mysql.createConnection(process.env.DATABASE_URL);
         
         const [rows] = await conn.query(
-            'SELECT * FROM user WHERE username = ? AND password = ?', 
+            'SELECT id FROM user WHERE username = ? AND password = ?', 
             [username, password]
         );
-        
+
+        let userID = rows[0].id;
+        console.log("y: ", userID);
+
         await conn.end();
 
         if (rows.length > 0) {
-            res.json({ success: true, message: "Prijava uspešna" });
+            
+            res.json({ success: true, message: "Prijava uspešna",  userID: userID});
         } else {
             res.status(401).json({ success: false, message: "Napačno uporabniško ime ali geslo" });
         }

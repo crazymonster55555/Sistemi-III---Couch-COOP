@@ -5,23 +5,27 @@ export default function MakeSession(props) {
     
 
     const [game, setGame] = useState('');
-    const [duration, setPassword] = useState('');
-    const [description, setEmail] = useState('');
-    const [connection, setTimezone] = useState('UTC');
-    const [status, setLanguage] = useState('Slovenski');
+    const [duration, setDuration] = useState(60);
+    const [description, setDescription] = useState('');
+    const [connection, setConnection] = useState('Parsec');
+    const [status, setStatus] = useState('open');
 
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
     
     const navigate = useNavigate();
+    let userID;
 
     const redirect = async(e) => {
         e.preventDefault();
         setError('');
         setSuccess('');
-
+        userID = localStorage.getItem('userID');
+        //console.log("d: ", duration);
+        let durationInt = userID.toString();
+        //console.log("d: ", userID);
         try {
-            const response = await fetch('http://localhost:3000/api/register', {
+            const response = await fetch('http://localhost:3000/api/dashboard/makeSession', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -31,22 +35,28 @@ export default function MakeSession(props) {
                     duration, 
                     description, 
                     connection, 
-                    status}),
+                    status,
+                    userID}),
             });
 
             const data = await response.json();
                 
             if (response.ok && data.success) {
                 setSuccess("Registration complete. Redirecting...");
-
-                setUsername('');
-                setEmail('');
-                setPassword('');
-                setTimezone('UTC');
-                setLanguage('Slovenski');
+                setGame('');
+                setDuration(60);
+                setDescription('');
+                setConnection('Parsec');
+                setStatus('open');
+                
+                const logedIn = localStorage.getItem('username');
 
                 setTimeout(() => {
-                    navigate('/');
+                    if (!logedIn){
+                        navigate("/");
+                    }else{
+                        navigate('/dashboard');
+                    }
                 }, 2000);
             } else {
                 setError(data.message || 'Registracija ni uspela');
@@ -59,44 +69,36 @@ export default function MakeSession(props) {
 
     return (
         <form className="login" onSubmit={redirect}>
-            <h1><b>Registration</b></h1>
+            <h1><b>Make session</b></h1>
             <br/>
             <span>
-                <label>Username: </label><br/>
-                <input type="text" placeholder="Enter username here ..."
-                required onChange={e => setUsername(e.target.value)} />
+                <label>Game name: </label><br/>
+                <input type="text" placeholder="Enter game here ..."
+                required onChange={e => setGame(e.target.value)} />
             </span>
             <br/><br/>
             <span>
-                <label>E-mail: </label><br/>
-                <input type="email" placeholder="Enter e-mail here ..."
-                required onChange={e => setEmail(e.target.value)} />
+                <label>Duration: </label><br/>
+                <input type="number" min="0" max="999" placeholder="(min)"
+                required onChange={e => setDuration(e.target.value)} />
             </span>
             <br/><br/>
             <span>
-                <label>Password: </label><br/>
-                <input type="password" placeholder="Enter password here ..."
-                required onChange={e => setPassword(e.target.value)} />
+                <label>Description: </label><br/>
+                <input type="text" placeholder="Enter description here ..."
+                required onChange={e => setDescription(e.target.value)} />
             </span>
             <br/><br/>
             <span>
-                <label>Timezone: </label><br/>
-                <select required onChange={e => setTimezone(e.target.value)}>
-                    <option value="UTC">UTC</option>
-                    <option value="EST">EST</option>
+                <label>Connection type: </label><br/>
+                <select required onChange={e => setConnection(e.target.value)}>
+                    <option value="Parsec">Parsec</option>
+                    <option value="Moonlight">Moonlight</option>
                 </select>
             </span>
             <br/><br/>
             <span>
-                <label>Language: </label><br/>
-                <select required onChange={e => setLanguage(e.target.value)}>
-                    <option value="Slovenski">Slovenski</option>
-                    <option value="English">English</option>
-                </select>
-            </span>
-            <br/><br/>
-            <span>
-                <button type="submit">Sign Up</button>
+                <button type="submit">Make session</button>
             </span>
             <br/>
             {error && <p style={{ color: 'red', fontWeight: 'bold' }}>{error}</p>}
