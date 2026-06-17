@@ -198,6 +198,18 @@
 
 .dashboard{
   position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5%;
+  font-size:xx-large;
+  color: aqua;
+}
+
+.makeSession{
+  position: absolute;
   margin: auto;
-  border-color: aqua;
+  top: 15%;
+  right: 5%;
+  font-size: xx-large;
+  border-radius: 100%;
 }

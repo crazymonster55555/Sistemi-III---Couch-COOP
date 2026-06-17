@@ -2,11 +2,11 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Register from "./register";
 
-export default function Login(props) {
+export default function ResetPassword(props) {
     
 
     const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
+    const [newPassword, setNewPassword] = useState('');
     const [error, setError] = useState('');
     
     const navigate = useNavigate();
@@ -16,21 +16,20 @@ export default function Login(props) {
         setError('');
 
         try {
-            const response = await fetch('http://localhost:3000/api/login', {
+            const response = await fetch('http://localhost:3000/api/resetPassword', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ username, password }),
+                body: JSON.stringify({ newPassword,username }),
             });
 
             const data = await response.json();
 
             if (response.ok && data.success) {
-                localStorage.setItem('username', username);
-                navigate('/dashboard');
+                navigate('/');
             } else {
-                setError(data.message || 'Prijava ni uspela');
+                setError(data.message || 'Sprememba ni uspela');
             }
         } catch (error) {
             console.error('Napaka pri povezavi:', error);
@@ -40,7 +39,7 @@ export default function Login(props) {
 
     return (
         <form className="login" onSubmit={redirect}>
-            <h1><b>Login</b></h1>
+            <h1><b>Change Password</b></h1>
             <br/>
             <span>
                 <label>Username: </label><br/>
@@ -49,17 +48,14 @@ export default function Login(props) {
             </span>
             <br/><br/>
             <span>
-                <label>Password: </label><br/>
-                <input type="password" placeholder="Enter password here ..."
-                required onChange={e => setPassword(e.target.value)} />
+                <label>New Password: </label><br/>
+                <input type="password" placeholder="Enter new password here ..."
+                required onChange={e => setNewPassword(e.target.value)} />
             </span>
             <br/><br/>
             <span>
-                <button type="submit">Log In</button>
+                <button type="submit">Change password</button>
             </span>
-            <br/>   
-            <Link to="/register">Sign Up</Link><br/>
-            <Link to="/resetPassword">Reset Password</Link>
             {error && <p style={{ color: 'red', fontWeight: 'bold' }}>{error}</p>}
         </form>
     );

@@ -56,6 +56,39 @@ app.post("/api/register", async (req,res) => {
     }
 });
 
+app.post('/api/resetPassword', async (req, res) => {
+    const { newPassword, username } = req.body;
+
+    try {
+        const conn = await mysql.createConnection(process.env.DATABASE_URL);
+        
+        const [validUser] = await conn.query(
+            'SELECT * FROM user WHERE username = ?',
+            [username]
+        )
+
+        if (validUser.length == 0){
+            res.status(401).json({});
+        }
+
+        const [rows] = await conn.query(
+            'UPDATE user SET password = ? WHERE username = ? ', 
+            [newPassword, username]
+        );
+        
+        await conn.end();
+
+        if (rows.affectedRows > 0) {
+            res.json({ success: true, message: "Sprememeba uspešna" });
+        } else {
+            res.status(401).json({ success: false, message: "Sprememba neuspesna" });
+        }
+    } catch (err) {
+        console.error('API Error:', err);
+        res.status(500).json({ success: false, error: 'Napaka na strežniku' });
+    }
+});
+
 app.post('/api/login', async (req, res) => {
     const { username, password } = req.body;
 
