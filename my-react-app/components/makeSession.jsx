@@ -52,6 +52,9 @@ export default function MakeSession(props) {
                 setStatus('open');
                 
                 const logedIn = localStorage.getItem('username');
+                
+                parent.className="---";
+                console.log("Y: ", parent.className);
 
                 setTimeout(() => {
                     if (!logedIn){

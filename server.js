@@ -111,6 +111,40 @@ app.post("/api/dashboard/makeSession", async (req,res) => {
     }
 });
 
+app.delete("/api/dashboard/deleteSessions", async (req, res) =>{
+    const { id, user_id } = req.body;
+    try{
+        console.log(id + " " + user_id);
+        const conn = await mysql.createConnection(process.env.DATABASE_URL);
+
+        const [exists] = await conn.query(
+            "SELECT * FROM session WHERE id = ? AND user_id = ?",
+            [id,user_id]
+        )
+
+        if (exists.length === 0) {
+            await conn.end();
+            return res.status(404).json({
+                success: false,
+                message: "Session not found or you don't have permission"
+            });
+        }
+
+        await conn.query(
+            "DELETE FROM session WHERE id = ?",
+            [id]
+        );
+
+        await conn.end();
+
+        res.json({success: true, message: "Deleted successfully"});
+
+    }catch(err){
+        console.error("Error: ", err);
+        res.status(500).json({success: false, error: "Server error"});
+    }
+});
+
 app.get("/api/dashboard/sessions", async (req, res) =>{
     try{
         
