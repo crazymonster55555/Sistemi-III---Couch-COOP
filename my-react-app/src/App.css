@@ -206,28 +206,39 @@
 }
 
 .makeSession{
-  position: absolute;
-  margin: auto;
-  top: 15%;
+  position: sticky;
+  margin-left: auto;
   right: 15%;
+  top: 15%;
   font-size: xx-large;
   border-radius: 100%;
 }
 
 .makeSession1{
-  position: absolute;
-  margin: auto;
-  top: 25%;
+  position: sticky;
+  margin-left: auto;
   right: 15%;
+  top: 25%;
   font-size: xx-large;
   border-radius: 100%;
 }
 
 .sessionLetter{
-  position:relative;
   background-color: purple;
-  margin: auto;
   padding: 2%;
+  border-radius: 8px;
+  width: 100%;
+  box-sizing: border-box;
+  position: block;
+  break-inside: avoid;
+  margin-bottom: 5%;
+}
+
+.sessionCollumns{
+  columns: 2;
+  gap: 2%;
+  width: 100%;
+  margin-bottom: 5%;
 }
 
 .---{

@@ -78,8 +78,5 @@ export default function DisplaySessions({session}){
         <button onClick={() => {deleteItem()}}>Delete</button>
         </span>
     </div>
-    <br/>
-    <br/>
-    <br/>
     </>);
 }

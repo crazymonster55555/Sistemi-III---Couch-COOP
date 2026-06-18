@@ -82,10 +82,9 @@ export default function Dashboard(props){
     return logedIn && (
     <>  
         <div className="dashboard">Welcome to dashboard</div>
-        <button className="makeSession" onClick={handleClick}>+</button><br/>
+        <button className="makeSession" onClick={handleClick}>+</button>
         <button className="makeSession1" onClick={handleLogout}>--</button>
-        <br/><br/><br/>
-        <div>
+        <div className="sessionCollumns">
             {sessions.map((session) => <DisplaySessions key={session.id} session={session}/>)}
         </div>  
         
