@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useDebugValue, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function DisplaySessions({session}){
@@ -9,6 +9,11 @@ export default function DisplaySessions({session}){
 
     const [error,setError] = useState();
     const [success,setSuccess] = useState();
+    const [refresh,setRefresh] = useState(false);
+
+    useEffect(() => {
+        console.log("D: ");
+    },[refresh]);
 
     const deleteItem = async () => {
         
@@ -16,10 +21,10 @@ export default function DisplaySessions({session}){
         setError('');
         setSuccess('');
         let sessionID = document.getElementById(session.id);
-        let parent = document.getElementById("-1");
-        console.log("id: ", sessionID);
-        console.log(":", parent);
-        console.log(parent.childElementCount);
+        console.log("Display parent: ", sessionID.parentNode);
+        //console.log("id: ", sessionID);
+        //console.log(":", parent);
+        //console.log(parent.childElementCount);
         
 
         try {
@@ -41,8 +46,12 @@ export default function DisplaySessions({session}){
                     parent.className="---";
                     console.log("Y: ", parent.className);
                 }   
-
+                
+                sessionID.className="none";
                 sessionID.remove();
+                window.location.reload();
+
+                
 
                 setTimeout(() => {
                     if (!logedIn){
