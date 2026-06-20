@@ -241,6 +241,19 @@
   margin-bottom: 5%;
 }
 
+.sessionLetterJoined{
+  background-color: purple;
+  padding: 2%;
+  border-radius: 8px;
+  box-sizing: border-box;
+  top: 10%;
+  right: 30%;
+  position: absolute;
+  font-size: 2em;
+  line-height: 1.2em;
+  padding-bottom: 5em;
+}
+
 .none{
   visibility: hidden;
 }

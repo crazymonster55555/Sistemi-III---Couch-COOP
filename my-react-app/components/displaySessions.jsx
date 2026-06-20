@@ -1,5 +1,6 @@
 import { useDebugValue, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import CurrentSession from "./currentSession";
 
 export default function DisplaySessions({session}){
     
@@ -47,9 +48,9 @@ export default function DisplaySessions({session}){
                     console.log("Y: ", parent.className);
                 }   
                 
-                sessionID.className="none";
+                sessionID.parentElement.className="none";
                 sessionID.remove();
-                window.location.reload();
+                //window.location.reload();
 
                 
 
@@ -70,21 +71,30 @@ export default function DisplaySessions({session}){
         
     }
 
+    const joinSession = async () => {
+        setError('');
+        setSuccess('');
+
+        console.log(session);
+        navigate("/dashboard/" + session.id + "/room");
+    }
+
     return (
     <>
     {/*console.log(session.status)*/}
     <div id="-1" className="sessionLetter">
         <span id={session.id}>
-        <span>Match ID: {session.id}</span><br/>
-        <span>Created by: {session.user_id}</span><br/>
-        <span>Game: {session.game_id}</span><br/>
-        <span>Started: {session.start_time}</span><br/>
-        <span>Duration: {session.duration} minutes</span><br/>
-        <span>Description: {session.description}</span><br/>
-        <span>Connection: {session.connection_type}</span><br/>
-        <span>Status: {session.status}</span><br/>
-        <span>Created: {session.created_at}</span><br/>
-        <button onClick={() => {deleteItem()}}>Delete</button>
+            <span>Match ID: {session.id}</span><br/>
+            <span>Created by: {session.user_id}</span><br/>
+            <span>Game: {session.game_id}</span><br/>
+            <span>Started: {session.start_time}</span><br/>
+            <span>Duration: {session.duration} minutes</span><br/>
+            <span>Description: {session.description}</span><br/>
+            <span>Connection: {session.connection_type}</span><br/>
+            <span>Status: {session.status}</span><br/>
+            <span>Created: {session.created_at}</span><br/>
+            <button onClick={() => {joinSession()}}>Join</button><br/>
+            <button onClick={() => {deleteItem()}}>Delete</button>
         </span>
     </div>
     </>);

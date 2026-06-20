@@ -5,6 +5,7 @@ import Register from "../components/register";
 import ResetPassword from "../components/resetPassword";
 import MakeSession from "../components/makeSession";
 import Empty from "../components/empty";
+import CurrentSession from "../components/currentSession";
 
 export default function AppRouter(){
     return (
@@ -17,6 +18,7 @@ export default function AppRouter(){
                 <Route path="/resetPassword" element={<ResetPassword />} />
                 <Route path="/dashboard/makeSession" element={<MakeSession />} />
                 <Route path="/dashboard/sessions" element={<Empty/>}/>
+                <Route path="/dashboard/:id/room" element={<CurrentSession/>}/>
             </Routes>
         </BrowserRouter>
     )

@@ -164,6 +164,30 @@ app.get("/api/dashboard/sessions", async (req, res) =>{
     }
 });
 
+app.post("/api/dashboard/sessions/info", async (req, res) =>{
+
+    const { id } = req.body;
+
+    try{
+        
+        const conn = await mysql.createConnection(process.env.DATABASE_URL);
+        
+        const [sessions] = await conn.query(
+            "SELECT * FROM session WHERE id = ?",
+            [id]
+        );
+        
+        //console.log(sessions);
+
+        await conn.end();
+
+        res.json({success: true, sessions: sessions});
+
+    }catch(err){
+        console.error("Error: ", err);
+        res.status(500).json({success: false, error: "Server error"});
+    }
+});
 
 app.post('/api/resetPassword', async (req, res) => {
     const { newPassword, username } = req.body;
