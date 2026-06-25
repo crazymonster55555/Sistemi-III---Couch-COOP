@@ -9,6 +9,7 @@ export default function Dashboard(props){
     const navigate = useNavigate();
     const [sessions,setSessions] = useState([]);
     const [update,setUpdate] = useState(0);
+    const [temp,setTemp] = useState('');
 
     useEffect(() => {
 
@@ -65,7 +66,8 @@ export default function Dashboard(props){
 
     
 
-    console.log(logedIn);
+    //console.log(logedIn);
+    
     //<button onClick={() => {setUpdate((prev) => prev+1)}}>test</button>
 
     function handleClick(){
@@ -79,13 +81,40 @@ export default function Dashboard(props){
         alert("Logged out successfully");
     }
 
+    function handleTextbox(e){
+        setTemp(e);
+    }
+
+    //console.log(sessions);
+    //console.log(String(sessions.id));
+    //console.log(String(sessions.id).includes(temp));
+
     return logedIn && (
     <>  
-        <div className="dashboard">Welcome to dashboard</div>
-        <button className="makeSession" onClick={handleClick}>+</button>
-        <button className="makeSession1" onClick={handleLogout}>--</button>
+        <div className="dashboard">Welcome to dashboard</div><br/>
+        <label>Searchbar: </label>
+        <span><input type="textbox" onChange={e => handleTextbox(e.target.value)} placeholder="Enter text here"/></span>
+        <label>Typed in: {temp}</label>
+        <span className="spane"><button className="makeSession" onClick={handleClick}>+</button></span>
+        <span className="spane1"><button className="makeSession1" onClick={handleLogout}>--</button></span>
+        <br/>
         <div className="sessionCollumns">
-            {sessions.map((session) => <DisplaySessions key={session.id} session={session}/>)}
+            {sessions
+            .filter((sessions) => {
+                if (temp == ''){ 
+                    return true; 
+                }
+                return(
+                    String(sessions.id).includes(temp) ||
+                    String(sessions.user_id).includes(temp) ||
+                    String(sessions.game_id).includes(temp) ||
+                    String(sessions.duration).includes(temp) ||
+                    String(sessions.description).includes(temp) ||
+                    String(sessions.connection_type).includes(temp) ||
+                    String(sessions.status).includes(temp)
+                ); 
+                })
+            .map((session) => <DisplaySessions key={session.id} session={session}/>)}
         </div>  
         
     </>);

@@ -205,20 +205,38 @@
   color: aqua;
 }
 
+.spane{
+  position: absolute;
+  margin-top: auto;
+  margin-right: auto;
+  top: 15%;
+  right: 15%;
+}
+
+.spane1{
+  position: absolute;
+  margin-top: auto;
+  margin-right: auto;
+  top: 5%;
+  right: 15%;
+}
+
 .makeSession{
   position: sticky;
   margin-left: auto;
-  right: 15%;
-  top: 15%;
+  margin-top: auto;
+  right: 5%;
+  top: 10%;
   font-size: xx-large;
   border-radius: 100%;
 }
 
 .makeSession1{
   position: sticky;
-  margin-left: auto;
-  right: 15%;
-  top: 25%;
+    margin-left: auto;
+  margin-top: auto;
+  right: 5%;
+  top: 5%;
   font-size: xx-large;
   border-radius: 100%;
 }
