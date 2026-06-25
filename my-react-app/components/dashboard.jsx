@@ -29,7 +29,7 @@ export default function Dashboard(props){
                 single = true;
             }
             
-        }, 50*1000);//30*60*1000
+        }, 30*60*1000);//30*60*1000
         timer;
 
     },[logedIn]);
