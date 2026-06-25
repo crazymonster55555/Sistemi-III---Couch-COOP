@@ -94,10 +94,10 @@ export default function Register(props) {
                 </select>
             </span>
             <br/><br/>
-            <Link to="/login">Log In</Link><br/>
             <span>
                 <button type="submit">Sign Up</button>
-            </span>
+            </span><br/>
+            <Link to="/">Log In</Link><br/>
             <br/>
             {error && <p style={{ color: 'red', fontWeight: 'bold' }}>{error}</p>}
         </form>

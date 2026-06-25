@@ -54,7 +54,8 @@ export default function ResetPassword(props) {
             </span>
             <br/><br/>
             <span>
-                <button type="submit">Change password</button>
+                <button type="submit">Change password</button><br/>
+                <Link to="/">Return to Log In</Link>
             </span>
             {error && <p style={{ color: 'red', fontWeight: 'bold' }}>{error}</p>}
         </form>

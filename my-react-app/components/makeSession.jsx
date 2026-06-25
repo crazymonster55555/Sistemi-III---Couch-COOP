@@ -104,7 +104,8 @@ export default function MakeSession(props) {
             <br/><br/>
             <span>
                 <button type="submit">Make session</button>
-            </span>
+            </span><br/>
+            <Link to="/dashboard">Return to dashboard</Link>
             <br/>
             {error && <p style={{ color: 'red', fontWeight: 'bold' }}>{error}</p>}
         </form>
