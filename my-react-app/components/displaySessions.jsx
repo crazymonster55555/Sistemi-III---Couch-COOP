@@ -72,11 +72,14 @@ export default function DisplaySessions({session}){
     }
 
     const joinSession = async () => {
-        setError('');
-        setSuccess('');
 
         console.log(session);
-        navigate("/dashboard/" + session.id + "/room");
+        
+
+        localStorage.setItem("sessionUrl","/dashboard/" + session.id + "/room");
+        navigate("/dashboard/" + session.id + "/room" + "/parsec");
+
+        
     }
 
     return (

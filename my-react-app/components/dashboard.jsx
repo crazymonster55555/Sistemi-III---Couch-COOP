@@ -99,7 +99,7 @@ export default function Dashboard(props){
         <span className="spane1"><button className="makeSession1" onClick={handleLogout}>--</button></span>
         <br/>
         <div className="sessionCollumns">
-            {sessions
+        {sessions
             .filter((sessions) => {
                 if (temp == ''){ 
                     return true; 

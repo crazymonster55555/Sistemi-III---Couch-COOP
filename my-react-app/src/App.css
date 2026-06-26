@@ -252,6 +252,18 @@
   margin-bottom: 5%;
 }
 
+.sessionLetter2{
+  background-color: purple;
+  padding: 2%;
+  border-radius: 8px;
+  width: 50%;
+  box-sizing: border-box;
+  position: block;
+  break-inside: avoid;
+  margin-bottom: 5%;
+  margin: auto;
+}
+
 .sessionCollumns{
   columns: 2;
   gap: 2%;
