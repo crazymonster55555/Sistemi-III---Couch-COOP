@@ -11,6 +11,11 @@ export default function CurrentSession(){
     console.log(id);
     const navigate = useNavigate();
 
+    let game = localStorage.getItem("game");
+    let username = localStorage.getItem("username");
+    console.log("temp name: " + game + " " + username);
+
+
     useEffect(() => {
         const temp = async () => {
             try {
@@ -53,8 +58,8 @@ export default function CurrentSession(){
         <div className="sessionLetterJoined">
             <span>Welcome to room {session?.id}</span><br/>
             <span>Match ID: {session?.id}</span><br/>
-            <span>Created by: {session?.user_id}</span><br/>
-            <span>Game: {session?.game_id}</span><br/>
+            <span>Created by: {username} (id: {session?.user_id})</span><br/>
+            <span>Game: {game} (id: {session?.game_id})</span><br/>
             <span>Started: {session?.start_time}</span><br/>
             <span>Duration: {session?.duration} minutes</span><br/>
             <span>Description: {session?.description}</span><br/>

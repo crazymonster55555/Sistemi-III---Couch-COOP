@@ -62,6 +62,7 @@ app.post("/api/dashboard/makeSession", async (req,res) => {
     }*/
     const {game, duration, description, connection, status, userID} = req.body;
     //console.log("d: ", userID);
+    console.log("thus: ", game);
     let userId = Number(userID);
     let durationInt = Number(duration);
 
@@ -80,9 +81,14 @@ app.post("/api/dashboard/makeSession", async (req,res) => {
                 message: "Game not available"
             })
         }
+
+        const [username] = await conn.query(
+            "SELECT username FROM user WHERE id = ?",
+            [userID]
+        )
         
         gameId = current[0].id;
-        gameName = current[0].name;
+        gameName = game;
         console.log(gameName);
         //console.log(durationInt);
         //console.log(userId);
@@ -100,7 +106,9 @@ app.post("/api/dashboard/makeSession", async (req,res) => {
             success: true,
             message: "Session created",
             userId: result.insertId,
-            gameName: gameName
+            gameName: gameName,
+            username: username,
+            game: game
         });
     }catch(err){
         console.error("Session failed", err);

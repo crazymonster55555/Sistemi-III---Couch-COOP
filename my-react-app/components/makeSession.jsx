@@ -40,8 +40,8 @@ export default function MakeSession(props) {
             });
 
             const data = await response.json();
-            const gameName = localStorage.setItem("gameName", data.gameName);
-            console.log("fff: ", gameName);
+            //const gameName = localStorage.setItem("gameName", data.gameName);
+            //console.log("fff: ", gameName);
                 
             if (response.ok && data.success) {
                 setSuccess("Session made. Redirecting...");
@@ -52,7 +52,9 @@ export default function MakeSession(props) {
                 setStatus('open');
                 
                 const logedIn = localStorage.getItem('username');
-                
+                localStorage.setItem('game', data.game);
+                localStorage.setItem('name', data.username);
+                                
                 parent.className="---";
                 console.log("Y: ", parent.className);
 
