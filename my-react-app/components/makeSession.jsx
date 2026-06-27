@@ -25,7 +25,7 @@ export default function MakeSession(props) {
         let durationInt = userID.toString();
         //console.log("d: ", userID);
         try {
-            const response = await fetch('http://localhost:3000/api/dashboard/makeSession', {
+            const response = await fetch('/api/dashboard/makeSession', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

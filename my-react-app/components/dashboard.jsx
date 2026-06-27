@@ -41,7 +41,7 @@ export default function Dashboard(props){
         //let temp = setTimeout(() => {
         const getSessions = async () => {
             try {
-                const response = await fetch('http://localhost:3000/api/dashboard/sessions');
+                const response = await fetch('/api/dashboard/sessions');
                 const data = await response.json();
                 console.log("data: ", data);
                 if (data.success){

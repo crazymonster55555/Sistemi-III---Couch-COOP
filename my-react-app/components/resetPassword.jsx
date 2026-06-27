@@ -16,7 +16,7 @@ export default function ResetPassword(props) {
         setError('');
 
         try {
-            const response = await fetch('http://localhost:3000/api/resetPassword', {
+            const response = await fetch('/api/resetPassword', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

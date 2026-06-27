@@ -29,7 +29,7 @@ export default function DisplaySessions({session}){
         
 
         try {
-            const response = await fetch('http://localhost:3000/api/dashboard/deleteSessions', {
+            const response = await fetch('/api/dashboard/deleteSessions', {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
