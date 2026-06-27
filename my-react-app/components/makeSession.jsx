@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 export default function MakeSession(props) {
     
 
-    const [game, setGame] = useState('');
+    const [game, setGame] = useState("It Takes Two");
     const [duration, setDuration] = useState(60);
     const [description, setDescription] = useState('');
     const [connection, setConnection] = useState('Parsec');
@@ -83,8 +83,10 @@ export default function MakeSession(props) {
             <br/>
             <span>
                 <label>Game name: </label><br/>
-                <input type="text" placeholder="Enter game here ..."
-                required onChange={e => setGame(e.target.value)} />
+                <select required
+                onChange={e => setGame(e.target.value)}>
+                    <option value="It Takes Two">It Takes Two</option>
+                </select>
             </span>
             <br/><br/>
             <span>

@@ -183,6 +183,33 @@
   }
 }
 
+#root{
+  background-color: #16171d;
+}
+
+html, body{
+  background-color: #16171d;
+}
+
+:placeholder-shown{
+  color: rgb(188, 188, 188);
+}
+
+
+span, h1, div, label, b, link, a{
+  color: white;
+}
+
+select option:hover {
+  background-color: #990099;
+  color: white;
+}
+
+input,button,textarea,select{
+  background-color: #4d004d;
+  color: white;
+}
+
 .login{
   position: relative;
   margin: auto;
@@ -202,33 +229,35 @@
   margin-right: auto;
   margin-top: 5%;
   font-size:xx-large;
-  color: aqua;
+  color: white;
 }
 
 .spane{
   position: absolute;
   margin-top: auto;
   margin-right: auto;
-  top: 15%;
+  top: 12%;
   right: 15%;
+  width: auto;
 }
 
 .spane1{
   position: absolute;
   margin-top: auto;
   margin-right: auto;
-  top: 5%;
+  top: 3%;
   right: 15%;
+  width: auto;
 }
 
 .makeSession{
   position: sticky;
   margin-left: auto;
   margin-top: auto;
-  top: 10%;
+  top: 7%;
   font-size: xx-large;
   background-color: #16171d;
-  border: none;
+  border: none; 
 }
 
 .makeSession1{
