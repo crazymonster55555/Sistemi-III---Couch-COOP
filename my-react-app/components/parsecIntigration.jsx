@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
+import parsecIcon from "/src/images/Parsec.png";
 
 export default function ParsecIntigration(props){
     
@@ -15,6 +16,7 @@ export default function ParsecIntigration(props){
     return (
     <>
         <div className="sessionLetter2">
+            <img src={parsecIcon} width="15%"></img>
             <div>Parsec integration</div>
             <div>Friends to add for this room:</div>
             <div>Friend Test1:</div>

@@ -225,20 +225,20 @@
   position: sticky;
   margin-left: auto;
   margin-top: auto;
-  right: 5%;
   top: 10%;
   font-size: xx-large;
-  border-radius: 100%;
+  background-color: #16171d;
+  border: none;
 }
 
 .makeSession1{
   position: sticky;
-    margin-left: auto;
+  margin-left: auto;
   margin-top: auto;
-  right: 5%;
   top: 5%;
   font-size: xx-large;
-  border-radius: 100%;
+  border: none;
+  background-color: #16171d;
 }
 
 .sessionLetter{
@@ -255,7 +255,6 @@
 .sessionLetter2{
   background-color: purple;
   padding: 2%;
-  border-radius: 8px;
   width: 50%;
   box-sizing: border-box;
   position: block;
@@ -276,12 +275,14 @@
   padding: 2%;
   border-radius: 8px;
   box-sizing: border-box;
-  top: 10%;
-  right: 30%;
+  top: 17%;
+  right: 25%;
+  left: 25%;
   position: absolute;
-  font-size: 2em;
+  font-size: 1.25em;
   line-height: 1.2em;
-  padding-bottom: 5em;
+  padding-bottom: 2em;
+  width: 50%;
 }
 
 .none{

@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
+import discordIcon from "/src/images/Discord.png";
+import parsecIcon from "/src/images/Parsec.png";
+
 export default function CurrentSession(){
 
     const [error,setError] = useState();
@@ -65,7 +68,8 @@ export default function CurrentSession(){
             <span>Description: {session?.description}</span><br/>
             <span>Connection: {session?.connection_type}</span><br/>
             <span>Status: {session?.status}</span><br/>
-            <span>Created: {session?.created_at}</span><br/>
+            <span>Created: {session?.created_at}</span><br/><br/>
+            <img src={parsecIcon} width="15%"></img><img src={discordIcon} width="15%"></img><br/><br/>
             <button onClick={toDashBoard}>Leave session</button>
         </div>
     </>);

@@ -11,6 +11,8 @@ app.use(cors());
 
 app.use(express.json());
 
+const reactBuildPath = path.join(__dirname, './my-react-app/dist')
+
 app.post("/api/register", async (req,res) => {
     const { username, email, password, timezone, language } = req.body;
 
@@ -271,7 +273,13 @@ app.get('/api', async (req, res) => {
     }
 });
 
+app.use(express.static(reactBuildPath));
+
+app.get('*splat', (req, res) => {
+    res.sendFile(path.join(reactBuildPath, 'index.html'));
+})
+
 app.listen(port, '0.0.0.0', () => {
     console.log(`Server: http://localhost:${port}/api`);
-    console.log(`Server: http://localhost:${port+1}`);
+    console.log(`Server: http://localhost:${port}`);
 });

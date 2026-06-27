@@ -2,6 +2,9 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import DisplaySessions from "./displaySessions";
 
+import addIcon from "/src/images/Add.png";
+import exitIcon from "/src/images/Exit.png";
+
 export default function Dashboard(props){
         
     let single = true;
@@ -95,8 +98,16 @@ export default function Dashboard(props){
         <label>Searchbar: </label>
         <span><input type="textbox" onChange={e => handleTextbox(e.target.value)} placeholder="Enter text here"/></span>
         <label>Typed in: {temp}</label>
-        <span className="spane"><button className="makeSession" onClick={handleClick}>+</button></span>
-        <span className="spane1"><button className="makeSession1" onClick={handleLogout}>--</button></span>
+        <span className="spane">
+            <button className="makeSession" onClick={handleClick}>
+                <img src={addIcon} width="15%"></img>
+            </button>
+        </span>
+        <span className="spane1">
+            <button className="makeSession1" onClick={handleLogout}>
+                <img src={exitIcon} width="15%"></img>
+            </button>
+        </span>
         <br/>
         <div className="sessionCollumns">
         {sessions
