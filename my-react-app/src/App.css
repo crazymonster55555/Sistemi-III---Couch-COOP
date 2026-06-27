@@ -198,6 +198,93 @@
 
 .dashboard{
   position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5%;
+  font-size:xx-large;
+  color: aqua;
+}
+
+.spane{
+  position: absolute;
+  margin-top: auto;
+  margin-right: auto;
+  top: 15%;
+  right: 15%;
+}
+
+.spane1{
+  position: absolute;
+  margin-top: auto;
+  margin-right: auto;
+  top: 5%;
+  right: 15%;
+}
+
+.makeSession{
+  position: sticky;
+  margin-left: auto;
+  margin-top: auto;
+  top: 10%;
+  font-size: xx-large;
+  background-color: #16171d;
+  border: none;
+}
+
+.makeSession1{
+  position: sticky;
+  margin-left: auto;
+  margin-top: auto;
+  top: 5%;
+  font-size: xx-large;
+  border: none;
+  background-color: #16171d;
+}
+
+.sessionLetter{
+  background-color: purple;
+  padding: 2%;
+  border-radius: 8px;
+  width: 100%;
+  box-sizing: border-box;
+  position: block;
+  break-inside: avoid;
+  margin-bottom: 5%;
+}
+
+.sessionLetter2{
+  background-color: purple;
+  padding: 2%;
+  width: 50%;
+  box-sizing: border-box;
+  position: block;
+  break-inside: avoid;
+  margin-bottom: 5%;
   margin: auto;
-  border-color: aqua;
+}
+
+.sessionCollumns{
+  columns: 2;
+  gap: 2%;
+  width: 100%;
+  margin-bottom: 5%;
+}
+
+.sessionLetterJoined{
+  background-color: purple;
+  padding: 2%;
+  border-radius: 8px;
+  box-sizing: border-box;
+  top: 17%;
+  right: 25%;
+  left: 25%;
+  position: absolute;
+  font-size: 1.25em;
+  line-height: 1.2em;
+  padding-bottom: 2em;
+  width: 50%;
+}
+
+.none{
+  visibility: hidden;
 }

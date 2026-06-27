@@ -2,6 +2,12 @@ import { BrowserRouter, Routes, Route } from "react-router";
 import App from "./App";
 import Dashboard from "../components/dashboard";
 import Register from "../components/register";
+import ResetPassword from "../components/resetPassword";
+import MakeSession from "../components/makeSession";
+import Empty from "../components/empty";
+import CurrentSession from "../components/currentSession";
+import ParsecIntigration from "../components/parsecIntigration";
+import DiscordIntigration from "../components/discordIntigration";
 
 export default function AppRouter(){
     return (
@@ -11,6 +17,12 @@ export default function AppRouter(){
                 <Route path="/app" element={<App />}/>
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/register" element={<Register />} />
+                <Route path="/resetPassword" element={<ResetPassword />} />
+                <Route path="/dashboard/makeSession" element={<MakeSession />} />
+                <Route path="/dashboard/sessions" element={<Empty/>}/>
+                <Route path="/dashboard/:id/room" element={<CurrentSession/>}/>
+                <Route path="/dashboard/:id/room/parsec" element={<ParsecIntigration/>}/>
+                <Route path="/dashboard/:id/room/discord" element={<DiscordIntigration/>}/>
             </Routes>
         </BrowserRouter>
     )
