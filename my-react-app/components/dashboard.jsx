@@ -122,7 +122,9 @@ export default function Dashboard(props){
                     String(sessions.duration).includes(temp) ||
                     String(sessions.description).includes(temp) ||
                     String(sessions.connection_type).includes(temp) ||
-                    String(sessions.status).includes(temp)
+                    String(sessions.status).includes(temp) ||
+                    String(sessions.user_username).includes(temp) ||
+                    String(sessions.game_name).includes(temp)
                 ); 
                 })
             .map((session) => <DisplaySessions key={session.id} session={session}/>)}

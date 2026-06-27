@@ -61,8 +61,8 @@ export default function CurrentSession(){
         <div className="sessionLetterJoined">
             <span>Welcome to room {session?.id}</span><br/>
             <span>Match ID: {session?.id}</span><br/>
-            <span>Created by: {username} (id: {session?.user_id})</span><br/>
-            <span>Game: {game} (id: {session?.game_id})</span><br/>
+            <span>Created by: {session?.user_username} (id: {session?.user_id})</span><br/>
+            <span>Game: {session?.game_name} (id: {session?.game_id})</span><br/>
             <span>Started: {session?.start_time}</span><br/>
             <span>Duration: {session?.duration} minutes</span><br/>
             <span>Description: {session?.description}</span><br/>

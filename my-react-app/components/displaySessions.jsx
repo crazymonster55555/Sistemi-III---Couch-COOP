@@ -1,12 +1,14 @@
 import { useDebugValue, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { data, useNavigate } from "react-router-dom";
 import CurrentSession from "./currentSession";
 
 export default function DisplaySessions({session}){
     
-    let username = localStorage.getItem("username");
-    let game = localStorage.getItem("game");
+    //let username = localStorage.getItem("username");
+    //let game = localStorage.getItem("game");
     const navigate = useNavigate();
+
+
 
     const [error,setError] = useState();
     const [success,setSuccess] = useState();
@@ -82,14 +84,17 @@ export default function DisplaySessions({session}){
         
     }
 
+    //{dataX?.username}
+    //{dataX?.game}
+
     return (
     <>
     {/*console.log(session.status)*/}
     <div id="-1" className="sessionLetter">
         <span id={session.id}>
             <span>Match ID: {session.id}</span><br/>
-            <span>Created by: {username} (id: {session.user_id})</span><br/>
-            <span>Game: {game} (id: {session?.game_id})</span><br/>
+            <span>Created by: {session.user_username} (id: {session.user_id})</span><br/>
+            <span>Game: {session.game_name} (id: {session?.game_id})</span><br/>
             <span>Started: {session.start_time}</span><br/>
             <span>Duration: {session.duration} minutes</span><br/>
             <span>Description: {session.description}</span><br/>

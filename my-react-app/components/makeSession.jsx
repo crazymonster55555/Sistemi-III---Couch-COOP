@@ -52,6 +52,9 @@ export default function MakeSession(props) {
                 setStatus('open');
                 
                 const logedIn = localStorage.getItem('username');
+                console.log("data here -> ", data);
+                localStorage.setItem('data', JSON.stringify(data));
+                console.log("data sent", JSON.parse(localStorage.getItem('data')));
                 localStorage.setItem('game', data.game);
                 localStorage.setItem('name', data.username);
                                 

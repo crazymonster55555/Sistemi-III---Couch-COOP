@@ -161,9 +161,12 @@ app.get("/api/dashboard/sessions", async (req, res) =>{
         const conn = await mysql.createConnection(process.env.DATABASE_URL);
         
         const [sessions] = await conn.query(
-            "SELECT * FROM session"
+            `SELECT s.*, u.username as user_username, g.name as game_name 
+            FROM session s
+            JOIN user u ON s.user_id = u.id
+            JOIN game g ON s.game_id = g.id`
         );
-        
+
         await conn.end();
 
         res.json({success: true, sessions: sessions});
@@ -183,7 +186,11 @@ app.post("/api/dashboard/sessions/info", async (req, res) =>{
         const conn = await mysql.createConnection(process.env.DATABASE_URL);
         
         const [sessions] = await conn.query(
-            "SELECT * FROM session WHERE id = ?",
+            `SELECT s.*, u.username as user_username, g.name as game_name  
+            FROM session s
+            JOIN user u ON s.user_id = u.id
+            JOIN game g ON s.game_id = g.id 
+            WHERE s.id = ?`,
             [id]
         );
         
