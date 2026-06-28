@@ -8,7 +8,7 @@ export default function Register(props) {
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
     const [timezone, setTimezone] = useState('UTC');
-    const [language, setLanguage] = useState('Slovenski');
+    const [language, setLanguage] = useState('English');
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
     
@@ -42,7 +42,7 @@ export default function Register(props) {
                 setEmail('');
                 setPassword('');
                 setTimezone('UTC');
-                setLanguage('Slovenski');
+                setLanguage('English');
 
                 setTimeout(() => {
                     navigate('/');

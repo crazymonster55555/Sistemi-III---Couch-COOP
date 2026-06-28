@@ -314,6 +314,10 @@ input,button,textarea,select{
   width: 50%;
 }
 
+.noAccess{
+  visibility: hidden;
+}
+
 .none{
   visibility: hidden;
 }

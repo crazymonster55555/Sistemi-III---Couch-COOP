@@ -4,7 +4,8 @@ import CurrentSession from "./currentSession";
 
 export default function DisplaySessions({session}){
     
-    //let username = localStorage.getItem("username");
+    let usernameOutCheck = localStorage.getItem("username");
+    console.log("userLogedIn: " + usernameOutCheck);
     //let game = localStorage.getItem("game");
     const navigate = useNavigate();
 
@@ -102,7 +103,7 @@ export default function DisplaySessions({session}){
             <span>Status: {session.status}</span><br/>
             <span>Created: {session.created_at}</span><br/>
             <button onClick={() => {joinSession()}}>Join</button><br/>
-            <button onClick={() => {deleteItem()}}>Delete</button>
+            {usernameOutCheck == session.user_username ? <button onClick={() => {deleteItem()}}>Delete</button>: <button className="noAccess">Can't remove others rooms</button>}
         </span>
     </div>
     </>);
